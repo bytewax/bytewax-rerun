@@ -191,8 +191,7 @@ myst_url_schemes = {
         "classes": ["github"],
     },
     "gh-path": {
-        "url": f"https://github.com/bytewax/bytewax-rerun/blob/{git_id}"
-        "#{path}}#",
+        "url": f"https://github.com/bytewax/bytewax-rerun/blob/{git_id}" "#{path}}#",
         "title": "bytewax/bytewax-rerun{{ path }}",
         "classes": ["github"],
     },
@@ -218,9 +217,7 @@ autodoc2_hidden_objects = [
 autodoc2_output_dir = "api"
 # Python package to parse to generate Markdown API docs for in the
 # above directory.
-autodoc2_packages = [
-    "../src/bytewax/bytewax_rerun"
-]
+autodoc2_packages = ["../src/bytewax/bytewax_rerun"]
 # Controls the generation of those Markdown files. We have some
 # specific formatting requirements and inhereit from the built-in
 # renderer. This is why we need the path adjustment at the beginning

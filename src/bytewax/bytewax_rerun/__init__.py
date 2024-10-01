@@ -3,6 +3,9 @@
 import os
 import sys
 
+from .sinks import RerunMessage, RerunSink
+from .utils import rerun_log
+
 if "BYTEWAX_LICENSE" not in os.environ:
     msg = (
         "`bytewax-rerun` is commercially licensed "
@@ -13,3 +16,9 @@ if "BYTEWAX_LICENSE" not in os.environ:
         "Set the env var `BYTEWAX_LICENSE=1` to suppress this message."
     )
     print(msg, file=sys.stderr)
+
+__all__ = [
+    "RerunSink",
+    "RerunMessage",
+    "rerun_log",
+]

@@ -23,7 +23,8 @@ classifiers = [
 ]
 
 dependencies = [
-  "bytewax>=0.21"
+  "bytewax>=0.21",
+  "rerun-sdk>=0.18"
 ]
 
 [project.urls]
