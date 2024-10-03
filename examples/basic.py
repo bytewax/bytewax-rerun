@@ -14,6 +14,7 @@ inp_1 = op.input("test-input-1", flow, RandomMetricSource("test-metric-1"))
 inp_2 = op.input("test-input-2", flow, RandomMetricSource("test-metric-2"))
 inp_3 = op.input("test-input-3", flow, RandomMetricSource("test-metric-3"))
 metrics = op.merge("metrics", inp_1, inp_2, inp_3)
+keyed_metrics = op.key_on("keyed-elements", metrics, lambda x: x[0])
 
 
 def make_message(
@@ -46,13 +47,12 @@ def make_message(
     return (seconds_since_start, message)
 
 
-keyed_metrics = op.key_on("keyed-elements", metrics, lambda x: x[0])
 keyed_times = op.stateful_map("get_time", keyed_metrics, make_message)
 times = op.key_rm("remove-key", keyed_times)
 
 # The default operating_mode is `spawn`, which spawns a rerun viewer instance
 # if one is not running already, connects to the running one otherwise.
-op.output("rerun-time-sink", times, RerunSink("app_id", "recording_id"))
+op.output("rerun-time-sink", times, RerunSink("app", "recording"))
 
 # Other operating modes:
 
@@ -66,6 +66,7 @@ op.output("rerun-time-sink", times, RerunSink("app_id", "recording_id"))
 
 # `save` operating_mode: save data into a separate file for each worker.
 # from pathlib import Path
+
 # op.output(
 #     "rerun-time-sink",
 #     times,
